@@ -1,0 +1,47 @@
+$themes: (
+  light: (
+    background: #ffffff,
+    text: #333,
+    button-bg: #007bff,
+    button-text: #fff,
+  ),
+  dark: (
+    background: #1e1e1e,
+    text: #f1f1f1,
+    button-bg: #ff5722,
+    button-text: #fff,
+  ),
+);
+
+@mixin theme($mode) {
+  background-color: map-get($mode, background);
+  color: map-get($mode, text);
+
+  button {
+    background-color: map-get($mode, button-bg);
+    color: map-get($mode, button-text);
+  }
+}
+
+body {
+  @include theme(map-get($themes, light));
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  @include theme(map-get($themes, dark));
+}
+
+.container {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
